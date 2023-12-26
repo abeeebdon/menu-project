@@ -10,28 +10,16 @@ const App = () => {
   const filterAll = () => {
     setItems(menu)
   }
-  const filterBreakfast = () => {
-    const newItems = menu.filter((item) => item.category === 'breakfast')
-    setItems(newItems)
-  }
-  const filterLunch = () => {
-    const newItems = menu.filter((item) => item.category === 'lunch')
-    setItems(newItems)
-  }
-  const filterShakes = () => {
-    const newItems = menu.filter((item) => item.category === 'shakes')
+  const handleFilter = (filter) => {
+    const name = filter
+    const newItems = menu.filter((item) => item.category == name)
     setItems(newItems)
   }
 
   return (
     <main className="container">
       <Title />
-      <Button
-        filterAll={filterAll}
-        filterBreakfast={filterBreakfast}
-        filterLunch={filterLunch}
-        filterShakes={filterShakes}
-      />
+      <Button filterAll={filterAll} handleFilter={handleFilter} />
       <Menu items={items} setItems={setItems} />
     </main>
   )
