@@ -1,21 +1,20 @@
-const Button = ({ filterAll, handleFilter }) => {
+const Button = ({ handleFilter, temp }) => {
   const breakfast = 'breakfast'
   const lunch = 'lunch'
   const shakes = 'shakes'
   return (
     <div className="btn-container">
-      <button className="btn" onClick={filterAll}>
-        All
-      </button>
-      <button className="btn" onClick={() => handleFilter(breakfast)}>
-        Breakfast
-      </button>
-      <button className="btn" onClick={() => handleFilter(lunch)}>
-        Lunch
-      </button>
-      <button className="btn" onClick={() => handleFilter(shakes)}>
-        Shakes
-      </button>
+      {temp.map((category) => {
+        return (
+          <button
+            key={category}
+            className="btn"
+            onClick={() => handleFilter(category)}
+          >
+            {category}
+          </button>
+        )
+      })}
     </div>
   )
 }

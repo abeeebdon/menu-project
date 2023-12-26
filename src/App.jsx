@@ -7,21 +7,24 @@ import Button from './Button'
 const App = () => {
   const [items, setItems] = useState(menu)
 
-  const filterAll = () => {
-    setItems(menu)
-  }
-  const handleFilter = (filter) => {
-    const name = filter
-    const newItems = menu.filter((item) => item.category == name)
+  const handleFilter = (category) => {
+    if (category === 'all') {
+      setItems(menu)
+      return
+    }
+    const newItems = menu.filter((item) => item.category === category)
     setItems(newItems)
   }
 
+  const tempCategories = menu.map((item) => item.category)
+  const temp = new Set(tempCategories)
+  const tempArray = ['all', ...temp]
   return (
-    <main className="container">
+    <section className="menu">
       <Title />
-      <Button filterAll={filterAll} handleFilter={handleFilter} />
+      <Button handleFilter={handleFilter} temp={tempArray} />
       <Menu items={items} setItems={setItems} />
-    </main>
+    </section>
   )
 }
 export default App
